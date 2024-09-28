@@ -8,7 +8,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
     public class MenuController : Controller
     {
         private readonly HttpClient _client;
-        private string baseUri = "https://localhost:7127/api/MenuItem";
+        private string _baseUri = "https://localhost:7081/api/MenuItem";
         
         public MenuController(HttpClient client)
         {
@@ -19,7 +19,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
         {
             ViewData["Title"] = "Current menu";
 
-            var response = await _client.GetAsync($"{baseUri}");
+            var response = await _client.GetAsync($"{_baseUri}");
             var json = await response.Content.ReadAsStringAsync();
             var menuItemList = JsonConvert.DeserializeObject<List<MenuItem>>(json);
 
@@ -40,15 +40,14 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
 
             var json = JsonConvert.SerializeObject(menuItem);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync($"{baseUri}/Create", content);
+            var response = await _client.PostAsync($"{_baseUri}/Create", content);
 
-            // RedirectToAction("Index", "Home") för annan controller
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Edit(int id)
-        {
-            var response = await _client.GetAsync($"{baseUri}/Update/{id}");
+        public async Task<IActionResult> Edit(int menuItemId)
+        { 
+            var response = await _client.GetAsync($"{_baseUri}/{menuItemId}");
             var json = await response.Content.ReadAsStringAsync();
             var menuItem = JsonConvert.DeserializeObject<MenuItem>(json);
 
@@ -60,15 +59,15 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
         {
             var json = JsonConvert.SerializeObject(menuItem);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            await _client.PutAsync($"{baseUri}/Update", content);
+            await _client.PutAsync($"{_baseUri}/Update", content);
 
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int menuItemId)
         {
-            var response = await _client.DeleteAsync($"{baseUri}/Delete/{id}");
+            var response = await _client.DeleteAsync($"{_baseUri}/Delete/{menuItemId}");
 
             return RedirectToAction("Index");
         }

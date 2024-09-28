@@ -8,7 +8,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
     public class BookingController : Controller
     {
         private readonly HttpClient _client;
-        private string baseUri = "https://localhost:7127/api/Booking";
+        private string baseUri = "https://localhost:7164/api/Booking";
 
         public BookingController(HttpClient client)
         {

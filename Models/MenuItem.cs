@@ -5,7 +5,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Models
 {
     public class MenuItem
     {
-        public int Id { get; set; }
+        public int MenuItemId { get; set; }
 
         [Required(ErrorMessage = "Field cannot be empty.")]
         [StringLength(50, ErrorMessage = "The maximum number of characters allowed is 50.")]
