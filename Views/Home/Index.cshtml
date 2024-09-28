@@ -1,8 +1,44 @@
 ﻿@{
     ViewData["Title"] = "Ommo";
+    ViewData["Booking"] = "Reserv table";
+    ViewData["Menu"] = "Menu";
+    ViewData["Admin"] = "Admin";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @ViewData["Title"]!</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="main-flex">
+    <h1 class="main-heading">@ViewData["Title"]</h1>
+    <img id="main-flex-img"
+         src= "~/img/main-page-img.jpg"
+         alt="Meat grilling on a portable frying pan on a table." />
+
+    <h2>A place where Korean food meet Nordic culture</h2>
+
+    <p>
+        Modern Scandinavian dishes influenced by Japanese cooking methods and flavours. Complex creations that are easy to enjoy. 
+        Ommo is a playful and elegant place. Everything we do is permeated by our genuine love of food, drink and people, accompanied by a 
+        unique, beautiful and welcoming environment. With us, you will enjoy the flavours of pure ingredients, carefully selected based on season, 
+        quality and climate impact, and peppered with Korean influences. Welcome to an experience beyond the ordinary.
+    </p>
+
+    <h2>Our most popular dishes</h2>
+
+    <ul>
+        <li>
+
+        </li>
+    </ul>
+
+    <h2>@ViewData["Menu"]</h2>
+    <div class="div-show-more">
+        <button class="show-more-button"</button>
+    </div>
+
+    <h2>@ViewData["Booking"]</h2>
+    <div class="div-show-more">
+        <button class="show-more-button"</button>
+    </div>
+
+    <h2>@ViewData["Admin"]</h2>
+    <a asp-controller="Home" asp-action="Admin" class="btn btn-warning">Admin portal</a>
+
 </div>

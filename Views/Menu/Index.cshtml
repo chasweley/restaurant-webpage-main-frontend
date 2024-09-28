@@ -1,0 +1,19 @@
+﻿@model List<MenuItem>
+
+@foreach (var menuItem in Model)
+{
+    <div class="card" style="width:18rem">
+        <div class="card-body">
+            <h5 class="card-title">@menuItem.Name</h5>
+            <p class="card-text">Price: @menuItem.Price</p>
+            <a asp-controller="Menu" asp-action="Edit" asp-route-id=@menuItem.Id class="btn btn-warning">Edit</a>
+
+            <form method="post" asp-action="Delete" style="display:inline;">
+                <input type="hidden" name="id" value="@menuItem.Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+}
+
+<a asp-action="Create" asp-controller="Menu" class="btn btn-primary">Add new menu item</a>

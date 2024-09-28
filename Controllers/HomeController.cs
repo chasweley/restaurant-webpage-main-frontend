@@ -18,7 +18,16 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Menu()
+        {
+            return View();
+        }
+        public IActionResult Admin()
         {
             return View();
         }

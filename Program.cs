@@ -8,6 +8,7 @@ namespace Labb_2_Avancerad_fullstackutveckling
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpClient();
 
             var app = builder.Build();
 
