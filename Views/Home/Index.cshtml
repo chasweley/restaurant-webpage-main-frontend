@@ -21,24 +21,25 @@
     </p>
 
     <h2>Our most popular dishes</h2>
-
     <ul>
         <li>
-
+            Name: Blabla, Price: $XX,99
+        </li>
+        <li>
+            Name: Blubbblubb, Price: $YY,99
+        </li>
+        <li>
+            Name: Bläblä, Price: $ZZ,99
         </li>
     </ul>
 
     <h2>@ViewData["Menu"]</h2>
-    <div class="div-show-more">
-        <button class="show-more-button"</button>
-    </div>
+    <a asp-controller="Home" asp-action="Menu" class="btn btn-primary">Admin portal</a>
 
     <h2>@ViewData["Booking"]</h2>
-    <div class="div-show-more">
-        <button class="show-more-button"</button>
-    </div>
+    <a href="#" class="btn btn-primary">Reserv table</a>
 
     <h2>@ViewData["Admin"]</h2>
-    <a asp-controller="Home" asp-action="Admin" class="btn btn-warning">Admin portal</a>
+    <a asp-controller="Home" asp-action="Admin" class="btn btn-primary">Admin portal</a>
 
 </div>

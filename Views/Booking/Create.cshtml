@@ -1,0 +1,41 @@
+﻿@model Booking
+
+@{
+    DateTime earliestTimeToBook = DateTime.Now.AddHours(1);
+}
+
+<h1>Add new reservation</h1>
+
+<form method="post" asp-controller="Booking" asp-action="Create">
+    <div class="form-group">
+        <label asp-for=NoOfCustomers>Number of customers</label>
+        <input asp-for=NoOfCustomers class="form-control" />
+        <span asp-validation-for="NoOfCustomers" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for=BookedDateTime>Select date and time for reservation</label>
+            <input asp-for=BookedDateTime type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" 
+               class="form-control"
+               value="@earliestTimeToBook" 
+               step="60"
+               min="@earliestTimeToBook"
+               max="@DateTime.Now.AddYears(1)"/>
+        <span asp-validation-for="BookedDateTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for=PhoneNo>Phone number</label>
+        <input asp-for=PhoneNo class="form-control" />
+        <span asp-validation-for=PhoneNo class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for=Name>Full name</label>
+        <input asp-for=Name class="form-control" />
+        <span asp-validation-for=Name class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for=TableId>Table number</label>
+        <input asp-for=TableId class="form-control" />
+        <span asp-validation-for=TableId class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

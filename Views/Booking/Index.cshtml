@@ -1,0 +1,38 @@
+﻿@model List<Booking>
+
+<h1>Current bookings</h1>
+
+@if (Model.Count() != 0)
+{
+    <ul>
+        @foreach (var booking in Model)
+        {
+            <li>
+                <div class="card" style="width:18rem">
+                    <div class="card-body">
+                        <h5 class="card-title">Number of customers: @booking.NoOfCustomers</h5>
+                        <p class="card-text">User name: @booking.Name</p>
+                        <p class="card-text">User phone number: @booking.PhoneNo</p>
+                        <p class="card-text">Table number: @booking.TableId</p>
+                        <p class="card-text">Reservation time: @booking.BookedDateTime</p>
+                    
+                        <form method="get" asp-controller="Booking" asp-action="Edit" style="display:inline;">
+                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                            <button type="submit" class="btn btn-warning">Edit</button>
+                        </form>
+                        <form method="post" asp-controller="Booking" asp-action="Delete" style="display:inline;">
+                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>There are no reservations at the moment.</p>
+}
+
+<a asp-controller="Booking" asp-action="Create" class="btn btn-primary">Add new reservation</a>

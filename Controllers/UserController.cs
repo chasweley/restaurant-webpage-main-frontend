@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Labb_2_Avancerad_fullstackutveckling.Controllers
 {
-    public class BookingController : Controller
+    public class UserController : Controller
     {
         private readonly HttpClient _client;
-        private string _baseUri = "https://localhost:7081/api/Booking";
+        private string _baseUri = "https://localhost:7081/api/User";
 
-        public BookingController(HttpClient client)
+        public UserController(HttpClient client)
         {
             _client = client;
         }
