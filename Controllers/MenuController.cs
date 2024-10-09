@@ -1,10 +1,13 @@
 ﻿using Labb_2_Avancerad_fullstackutveckling.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Labb_2_Avancerad_fullstackutveckling.Controllers
 {
+    [Route("/adminportal/menu")]
     public class MenuController : Controller
     {
         private readonly HttpClient _client;
@@ -15,10 +18,8 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             _client = client;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexMenu()
         {
-            ViewData["Title"] = "Current menu";
-
             var response = await _client.GetAsync($"{_baseUri}");
             var json = await response.Content.ReadAsStringAsync();
             var menuItemList = JsonConvert.DeserializeObject<List<MenuItem>>(json);
@@ -26,27 +27,39 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             return View(menuItemList);
         }
 
-        public IActionResult Create()
+        [HttpGet("/adminportal/menu/add")]
+        [Authorize]
+        public IActionResult CreateMenu()
         {
-            ViewData["Title"] = "New menu item";
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(MenuItem menuItem)
+        [HttpPost("/adminportal/menu/add")]
+        [Authorize]
+        public async Task<IActionResult> CreateMenu(MenuItem menuItem)
         {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             if (!ModelState.IsValid) { return View(menuItem); }
 
             var json = JsonConvert.SerializeObject(menuItem);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync($"{_baseUri}/Create", content);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexMenu");
         }
 
-        public async Task<IActionResult> Edit(int menuItemId)
-        { 
+        [HttpGet("/adminportal/menu/edit")]
+        [Authorize]
+        public async Task<IActionResult> EditMenu(int menuItemId)
+        {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var response = await _client.GetAsync($"{_baseUri}/{menuItemId}");
             var json = await response.Content.ReadAsStringAsync();
             var menuItem = JsonConvert.DeserializeObject<MenuItem>(json);
@@ -54,22 +67,30 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             return View(menuItem);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(MenuItem menuItem)
+        [HttpPost("/adminportal/menu/edit")]
+        [Authorize]
+        public async Task<IActionResult> EditMenu(MenuItem menuItem)
         {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var json = JsonConvert.SerializeObject(menuItem);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             await _client.PutAsync($"{_baseUri}/Update", content);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexMenu");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(int menuItemId)
+        [HttpPost("/adminportal/menu/delete")]
+        [Authorize]
+        public async Task<IActionResult> DeleteMenu(int menuItemId)
         {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var response = await _client.DeleteAsync($"{_baseUri}/Delete/{menuItemId}");
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexMenu");
         }
     }
 }

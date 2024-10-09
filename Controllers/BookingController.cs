@@ -1,10 +1,13 @@
 ﻿using Labb_2_Avancerad_fullstackutveckling.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Labb_2_Avancerad_fullstackutveckling.Controllers
 {
+    [Route("/adminportal/reservation")]
     public class BookingController : Controller
     {
         private readonly HttpClient _client;
@@ -15,9 +18,11 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             _client = client;
         }
 
-        public async Task<IActionResult> Index()
+        [Authorize]
+        public async Task<IActionResult> IndexBooking()
         {
-            ViewData["Title"] = "Reservations";
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await _client.GetAsync($"{_baseUri}");
             var json = await response.Content.ReadAsStringAsync();
@@ -26,27 +31,13 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             return View(bookingList);
         }
 
-        public IActionResult Create()
+        [HttpGet("/adminportal/reservation/details")]
+        [Authorize]
+        public async Task<IActionResult> DetailsBooking(int bookingId)
         {
-            ViewData["Title"] = "New reservation";
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Booking booking)
-        {
-            if (!ModelState.IsValid) { return View(booking); }
-
-            var json = JsonConvert.SerializeObject(booking);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _client.PostAsync($"{_baseUri}/Create", content);
-
-            return RedirectToAction("Index");
-        }
-
-        public async Task<IActionResult> Edit(int bookingId)
-        {
             var response = await _client.GetAsync($"{_baseUri}/{bookingId}");
             var json = await response.Content.ReadAsStringAsync();
             var booking = JsonConvert.DeserializeObject<Booking>(json);
@@ -54,22 +45,68 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             return View(booking);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(Booking booking)
+        [HttpGet("/adminportal/reservation/add")]
+        [Authorize]
+        public IActionResult CreateBooking()
         {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost("/adminportal/reservation/add")]
+        public async Task<IActionResult> CreateBooking(Booking booking)
+        {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var json = JsonConvert.SerializeObject(booking);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync($"{_baseUri}/Create", content);
+
+            return RedirectToAction("IndexBooking");
+        }
+
+        [HttpGet("/adminportal/reservation/edit")]
+        [Authorize]
+        public async Task<IActionResult> EditBooking(int bookingId)
+        {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _client.GetAsync($"{_baseUri}/{bookingId}");
+            var json = await response.Content.ReadAsStringAsync();
+            var booking = JsonConvert.DeserializeObject<Booking>(json);
+
+            return View(booking);
+        }
+
+        [Authorize]
+        [HttpPost("/adminportal/reservation/edit")]
+        public async Task<IActionResult> EditBooking(Booking booking)
+        {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var json = JsonConvert.SerializeObject(booking);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             await _client.PutAsync($"{_baseUri}/Update", content);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexBooking");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(int bookingId)
+        [Authorize]
+        [HttpPost("/adminportal/reservation/delete")]
+        public async Task<IActionResult> DeleteBooking(int bookingId)
         {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var response = await _client.DeleteAsync($"{_baseUri}/Delete/{bookingId}");
 
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexBooking");
         }
     }
 }

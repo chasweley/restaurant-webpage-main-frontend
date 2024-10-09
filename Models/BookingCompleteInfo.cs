@@ -2,7 +2,7 @@
 
 namespace Labb_2_Avancerad_fullstackutveckling.Models
 {
-    public class Booking
+    public class BookingCompleteInfo
     {
         public int BookingId { get; set; }
         [Required(ErrorMessage = "Field cannot be empty.")]
@@ -12,6 +12,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Models
         public DateTime BookedDateTime { get; set; }
         public DateTime BookingEnds { get; set; }
 
+        [Required(ErrorMessage = "Field cannot be empty.")]
         public int UserId { get; set; }
         [Required(ErrorMessage = "Field cannot be empty.")]
         public string PhoneNo { get; set; }
