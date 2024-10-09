@@ -1,13 +1,12 @@
 :root {
     --main-color: rgb(84, 32, 1, 1);
-    --secondary-color: rgb(255, 53, 97);
-    --secondary-color-darker: rgb(209, 8, 52);
     --background-color: rgb(255, 255, 255);
 }
 
 * {
-    font-size: 24px;
+    font-size: 18px;
     font-family: 'Inter', sans-serif;
+    font-weight: 300;
 }
 
 body {
@@ -17,49 +16,74 @@ body {
 h1 {
     font-size: 2rem;
     color: var(--main-color);
+    text-align: center;
+    padding-top: 1rem;
 }
 
 h2 {
     font-size: 1.2rem;
+    text-align: center;
 }
 
 h1,
 h2,
-p,
-footer,
-ol,
+ul,
+p {
+    padding-left: 7rem;
+    padding-right: 7rem;
+}
+ 
 ul {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    list-style-type: none;
 }
 
-.cursive {
-    font-style: italic;
-}
-
-.bold {
-    font-weight: 700;
-}
-
-.main-heading {
+.main-font {
     font-family: "Josefin Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
 }
 
+.card-heading {
+    text-align: left;
+    padding-left: 0;
+}
+
+.card-p {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.btn-main-page {
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 10px;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+    border: 1px solid var(--main-color);
+}
+
+.btn-margin {
+    margin-top: 2rem;
+    margin-botton: 6rem;
+}
+
 /*Container for all content on page*/
 .container {
     height: 100vh;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 3em 1fr 2em;
+    min-width: 100vw;
+    padding: 0;
 }
 
 /*Grid for placement of navigation*/
 .container header.grid-header {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
     height: min-content;
     background-color: var(--background-color);
 }
@@ -67,7 +91,7 @@ ul {
 /*Grid for main content area*/
 .container main.grid-main {
     grid-row-start: 2;
-    grid-column-start: 1;
+    grid-column-start: 2;
     grid-column-end: 2;
     background-color: var(--background-color);
 }
@@ -75,163 +99,60 @@ ul {
 /*Grid for footer*/
 .container footer.grid-footer {
     grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    height: 2rem;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    height: 6rem;
+    margin-top: 0;
+    background-color: var(--main-color);
 }
 
-/*To change grid look for smaller screen*/
-@media screen and (max-width: 600px) {
-    .container {
-        height: 100vh;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 5rem max-content 2rem;
-    }
-
-        .container header.grid-header {
-            grid-column-start: 1;
-            grid-row-start: 1;
-            height: 3em;
-            background-color: rgb(255, 255, 255);
-        }
-
-        .container main.grid-main {
-            grid-row-start: 2;
-            grid-column-start: 1;
-            grid-column-end: 1;
-            min-height: calc(100vh - 3em - 2em);
-            background-color: var(--background-color);
-        }
-
-        .container footer.grid-footer {
-            grid-row-start: 4;
-            grid-row-end: 4;
-            grid-column-start: 1;
-            grid-column-end: 3;
-            height: 2rem;
-        }
-}
-
-/*Id for structure of the navivation menu*/
-#navigation {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-left: 0;
-    list-style-type: none;
-    border-radius: 0 0 0 0;
-}
-
-/*Id for checkbox main navigation menu*/
-#nav-toggle {
-    display: none;
-}
-
-/*Id for hamburger navigation menu*/
-#ham-menu {
-    display: none;
-}
-
-/*To show hamburger menu instead when regular menu becomes almost squished,
-and slightly alter general look of app*/
-@media screen and (max-width: 600px) {
-    body {
-        padding-top: 2rem;
-    }
-
-    .main-heading {
-        text-align: center;
-    }
-    /*Placement for hamburger menu*/
-    #ham-menu {
-        display: block;
-        position: fixed;
-        right: 1rem;
-        top: 1rem;
-        z-index: 1;
-    }
-
-    .fa-solid, fa-bars {
-        color: var(--secondary-color);
-    }
-    /*Look for drop down menu*/
-    #navigation {
-        flex-direction: column;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 100%;
-        text-align: center;
-        background-color: var(--background-color);
-        overflow: hidden;
-        margin-top: 0;
-        transition: all 0.5s;
-    }
-    /*Look for drop down menu when hamburger menu is checked*/
-    #nav-toggle:checked ~ #navigation {
-        background-color: var(--background-color);
-        bottom: 50%;
-        padding-top: 0.5rem;
-        padding: 0.5rem;
-    }
+.fa-solid, fa-bars {
+    color: var(--main-color);
 }
 
 /*Look for a normal, unvisited link*/
 a:link {
-    color: var(--main-color);
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 1rem;
-}
-
-/*Look for a link the user has visited*/
-a:visited {
-    color: var(--main-color);
 }
 
 /*Look for a link when the user mouses over it*/
 a:hover {
     text-underline-offset: 0.2rem;
-    text-decoration: underline var(--main-color);
+    text-decoration: none;
 }
 
-/* Look for a link the moment it is clicked */
-a:active {
-    color: var(--secondary-color-darker);
-    text-underline-offset: 0.2rem;
-    text-decoration: underline var(--secondary-color-darker);
+footer a {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    color: #FFFFFF;
+    text-align: right;
+    padding-top: 2.5rem;
+    padding-right: 2.5rem;
 }
-
-/*Look for a link in menu when you are on that page*/
-#current-page {
-    color: var(--secondary-color);
+footer a:hover {
+    color: #FFFFFF;
+    text-decoration: underline #FFFFFF;
 }
 
 /*Main content area for start page to center the image*/
 #main-flex {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 100%;
+    height: fit-content;
     width: 100%;
-}
-
-/*Styling for the image on the home page*/
-#main-flex-img {
-    margin-top: 1rem;
-    height: 20rem;
-    background: rgb(255, 255, 255);
-/*    background: linear-gradient( 56deg, rgba(255, 255, 255, 0) 0%, rgba(255, 0, 55, 1) 100% );
-    border-radius: 999999rem;*/
+    gap:2em;
+    margin-top: 2em;
 }
 
 /*Make image on home page smaller with smaller screen*/
-@media screen and (max-width: 900px) {
+@media screen {
     #main-flex-img {
-        height: 10rem;
+        width: 100vw;
     }
 }
 
@@ -241,50 +162,6 @@ a:active {
     flex-direction: column;
     height: 100%;
     justify-content: center;
-}
-
-/*Class for the secret easter egg button*/
-.header-button {
-    color: var(--secondary-color);
-    background-color: var(--secondary-color);
-    border: none;
-}
-
-/*For lists on different pages*/
-.ol-resume,
-.ul-main-page {
-    list-style-type: none;
-}
-
-.li-resume {
-    margin-bottom: 1.1rem;
-}
-
-/*To change display of resume depending on screen width,
-if screen is larger than 900px, info is presented in two columns*/
-@media screen and (min-width: 900px) {
-    .resume-card {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-    }
-
-    .div-resume {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-}
-
-/*Classes to make the "cards" in the portfolio present next to each other nicely*/
-.ul-portfolio {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.img-portfolio {
-    max-width: 90%;
 }
 
 .main-page-card {
@@ -303,53 +180,25 @@ if screen is larger than 900px, info is presented in two columns*/
     margin-left: 48vw;
 }
 
-/*When screen becomes smaller display cards in a column instead*/
-@media screen and (max-width: 550px) {
-    .ul-portfolio {
-        flex-direction: column;
-    }
-
-    .project-card {
-        width: 100%;
-    }
+.menu-list {
+    list-style: none;
 }
 
-/*For larger screens three cards are displayed in a row*/
-@media screen and (min-width: 900px) {
-    .project-card {
-        width: 30%;
-    }
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 14em;
+}
+.link-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+    padding-top: 1rem;
 }
 
-/*Class to get space around the button in the card*/
-.div-show-more {
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-/*Class for the look of the modal popup*/
-.more-info-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    text-align: center;
-    background-color: var(--background-color);
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-radius: 15px;
-    border: 1px solid lightgray;
-}
-
-/*Class for the look of the actual show more button*/
-.show-more-button {
-    background-color: var(--secondary-color);
-    color: white;
-    border-radius: 40px;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-    padding-left: 1.1rem;
-    padding-right: 1.1rem;
-    border: 1px solid var(--secondary-color);
+.link-btn:hover {
+    color: #FFFFFF;
+    background-color: rgb(111, 0, 0)
 }
