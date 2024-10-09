@@ -5,41 +5,54 @@
     ViewData["Admin"] = "Admin";
 }
 
-<div id="main-flex">
-    <h1 class="main-heading">@ViewData["Title"]</h1>
+    <div id="main-flex-container">
+        <h1 class="main-font">@ViewData["Title"]</h1>
     <img id="main-flex-img"
-         src= "~/img/main-page-img.jpg"
+         src="~/img/main-page-img.jpg"
          alt="Meat grilling on a portable frying pan on a table." />
-
-    <h2>A place where Korean food meet Nordic culture</h2>
-
-    <p>
-        Modern Scandinavian dishes influenced by Japanese cooking methods and flavours. Complex creations that are easy to enjoy. 
-        Ommo is a playful and elegant place. Everything we do is permeated by our genuine love of food, drink and people, accompanied by a 
-        unique, beautiful and welcoming environment. With us, you will enjoy the flavours of pure ingredients, carefully selected based on season, 
-        quality and climate impact, and peppered with Korean influences. Welcome to an experience beyond the ordinary.
-    </p>
-
-    <h2>Our most popular dishes</h2>
-    <ul>
-        <li>
-            Name: Blabla, Price: $XX,99
-        </li>
-        <li>
-            Name: Blubbblubb, Price: $YY,99
-        </li>
-        <li>
-            Name: Bläblä, Price: $ZZ,99
-        </li>
-    </ul>
-
-    <h2>@ViewData["Menu"]</h2>
-    <a asp-controller="Home" asp-action="Menu" class="btn btn-primary">Admin portal</a>
-
-    <h2>@ViewData["Booking"]</h2>
-    <a href="#" class="btn btn-primary">Reserv table</a>
-
-    <h2>@ViewData["Admin"]</h2>
-    <a asp-controller="Home" asp-action="Admin" class="btn btn-primary">Admin portal</a>
-
+    </div>
+<div id="main-flex">
+    
+    <div>
+       <h2 class="main-font">A place where Korean food meet Nordic culture</h2>
+        <p>
+            Modern Scandinavian dishes influenced by Japanese cooking methods and flavours. Complex creations that are easy to enjoy.
+            Ommo is a playful and elegant place. Everything we do is permeated by our genuine love of food, drink and people, accompanied by a
+            unique, beautiful and welcoming environment. With us, you will enjoy the flavours of pure ingredients, carefully selected based on season,
+            quality and climate impact, and peppered with Korean influences. Welcome to an experience beyond the ordinary.
+        </p>
+    </div>
+    
+    <div>
+        <h2 class="main-font">
+            Our most popular dishes</h2>
+        <ul class="menu-list">
+            <li>
+                <div class="menu-item">
+                    <div>Bibimbap</div>
+                    <div>$10,99</div>
+                </div>
+            </li>
+            <li>
+                <div class="menu-item">
+                    <div>Samgyeopsal</div>
+                    <div>$12,99</div>
+                </div>
+            </li>
+            <li>
+                <div class="menu-item">
+                    <div>Japchae</div>
+                    <div>$10,99</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="link-container">
+        <div class="link-item">
+            <a asp-controller="Home" asp-action="Menu" class="btn-main-page link-btn">See our menu</a>
+        </div>
+        <div class="link-item">
+            <a href="#" class="btn-main-page link-btn">Reserv table</a>
+        </div>
+    </div>
 </div>

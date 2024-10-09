@@ -1,17 +1,36 @@
 ﻿@model List<MenuItem>
 
-<h1>@ViewData["Menu"]</h1>
+@{
+    ViewData["Title"] = "Menu";
+}
 
-<ul class="list-group">
-    @foreach (var menuItem in Model)
-    {
-        @if(menuItem.IsAvailable)
-        {
-            <li class="list-group-item">@menuItem.Name Price: $ @menuItem.Price</li>
-        }
-@*         else
-        {
-            <li class="list-group-item disabled" @menuItem.Name Price: $ @menuItem.Price</li>
-        } *@
-    }
-</ul>
+<h1 class="main-font">@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Dish</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var menuItem in Model)
+            {   
+                if(menuItem.IsAvailable)
+                {
+                    <tr>
+                        <td>@menuItem.Name</td>
+                        <td>$@menuItem.Price</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There are no dishes on the menu.</p>
+}

@@ -1,8 +1,12 @@
 ﻿@model MenuItem
 
-<h1>Edit menu dish</h1>
+@{
+    ViewData["Title"] = "Edit menu dish";
+}
 
-<form method="post" asp-controller="Menu" asp-action="Edit">
+<h1 class="main-font">@ViewData["Title"]</h1>
+
+<form method="post" asp-controller="Menu" asp-action="EditMenu">
     <div class="form-group">
         <label asp-for=Name>Name</label>
         <input asp-for=Name class="form-control" value="@Model.Name" />
@@ -26,5 +30,8 @@
 
     <input type="hidden" asp-for="MenuItemId" />
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary btn-margin">Save</button>
+
+    <a asp-controller="Menu" asp-action="IndexMenu" class="btn btn-secondary btn-margin">Cancel</a>
 </form>
+

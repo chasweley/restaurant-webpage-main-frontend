@@ -1,8 +1,12 @@
 ﻿@model MenuItem
 
-<h1>Add new dish to menu</h1>
+@{
+    ViewData["Title"] = "Add new dish to menu";
+}
 
-<form method="post" asp-controller="Menu" asp-action="Create">
+<h1 class="main-font">@ViewData["Title"]</h1>
+
+<form method="post" asp-controller="Menu" asp-action="CreateMenu">
     <div class="form-group">
         <label asp-for=Name>Name</label>
         <input asp-for=Name class="form-control" />
@@ -22,5 +26,7 @@
         <label asp-for=IsPopular class="form-check-label" for="flexCheckDefault">Popular</label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary btn-margin">Save</button>
+    <a asp-controller="Menu" asp-action="IndexMenu" class="btn btn-secondary btn-margin">Cancel</a>
 </form>
+

@@ -1,0 +1,27 @@
+﻿@model Booking
+
+@{
+    ViewData["Title"] = "Detailed reservation information";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Reservation id: @Model.BookingId</p>
+<p>Reservation starts: @Model.BookedDateTime</p>
+<p>Reservation ends: @Model.BookingEnds</p>
+<p>No. of people: @Model.NoOfCustomers</p>
+<p>Customer name: @Model.Name</p>
+<p>Customer phone number: @Model.PhoneNo</p>
+<p>Table no.: @Model.TableId</p>
+<p>Seating capacity: @Model.SeatingCapacity</p>
+
+<form method="get" asp-controller="Booking" asp-action="EditBooking" style="display:inline;">
+    <input type="hidden" name="bookingId" value="@Model.BookingId" />
+    <button type="submit" class="btn btn-warning">Edit</button>
+</form>
+<form method="post" asp-controller="Booking" asp-action="DeleteBooking" style="display:inline;">
+    <input type="hidden" name="bookingId" value="@Model.BookingId" />
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this reservation?');">Delete</button>
+</form>
+
+<a asp-controller="Booking" asp-action="IndexBooking" class="btn btn-primary">Return to reservations</a>
