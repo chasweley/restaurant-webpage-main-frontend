@@ -6,53 +6,55 @@
 
 <h1 class="main-font">@ViewData["Title"]</h1>
 
-@if (Model != null)
-{
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Start</th>
-                <th scope="col">End</th>
-                <th scope="col">No. people</th>
-                <th scope="col">Table</th>
-                <th scope="col">Customer</th>
-                <th scope="col">Action</th>
-                @*                         <p class="card-text">User name: @booking.Name</p> *@
-                @*                         <p class="card-text">User phone number: @booking.PhoneNo</p> *@
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var booking in Model)
-            {
+<div class="admin-page">
+    @if (Model != null)
+    {
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>@booking.BookedDateTime</td>
-                    <td>@booking.BookingEnds</td>
-                    <td>@booking.NoOfCustomers</td>
-                    <td>@booking.TableId</td>
-                    <td>@booking.Name</td>
-                    <td>
-                        <form method="get" asp-controller="Booking" asp-action="DetailsBooking" style="display:inline;">
-                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
-                            <button type="submit" class="btn btn-primary">Details</button>
-                        </form>
-                        <form method="get" asp-controller="Booking" asp-action="EditBooking" style="display:inline;">
-                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
-                            <button type="submit" class="btn btn-warning">Edit</button>
-                        </form>
-                        <form method="post" asp-controller="Booking" asp-action="DeleteBooking" style="display:inline;">
-                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this reservation?');">Delete</button>
-                        </form>
-                    </td>
+                    <th scope="col">Start</th>
+                    <th scope="col">End</th>
+                    <th scope="col">No. people</th>
+                    <th scope="col">Table</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Action</th>
+                    @*                         <p class="card-text">User name: @booking.Name</p> *@
+                    @*                         <p class="card-text">User phone number: @booking.PhoneNo</p> *@
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>There are no reservations at the moment.</p>
-}
+            </thead>
+            <tbody>
+                @foreach (var booking in Model)
+                {
+                    <tr>
+                        <td>@booking.BookedDateTime</td>
+                        <td>@booking.BookingEnds</td>
+                        <td>@booking.NoOfCustomers</td>
+                        <td>@booking.TableId</td>
+                        <td>@booking.Name</td>
+                        <td>
+                            <form method="get" asp-controller="Booking" asp-action="DetailsBooking" style="display:inline;">
+                                <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                <button type="submit" class="btn btn-primary">Details</button>
+                            </form>
+                            <form method="get" asp-controller="Booking" asp-action="EditBooking" style="display:inline;">
+                                <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                <button type="submit" class="btn btn-warning">Edit</button>
+                            </form>
+                            <form method="post" asp-controller="Booking" asp-action="DeleteBooking" style="display:inline;">
+                                <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this reservation?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There are no reservations at the moment.</p>
+    }
 
-<a asp-controller="Booking" asp-action="CreateBooking" class="btn btn-primary">Add new reservation</a>
-<a asp-controller="Home" asp-action="Admin" class="btn btn-primary">Return to admin portal</a>
+    <a asp-controller="Booking" asp-action="CreateBooking" class="btn btn-primary">Add new reservation</a>
+    <a asp-controller="Home" asp-action="Admin" class="btn btn-primary">Return to admin portal</a>
+</div>

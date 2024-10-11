@@ -6,52 +6,58 @@
 
 <h1 class="main-font">@ViewData["Title"]</h1>
 
-@if (Model != null)
-{
-     <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Dish</th>
-                <th scope="col">Price</th>
-                <th scope="col">Available</th>
-                <th scope="col">Popular</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var menuItem in Model)
-            {
-                string isAvailable = "No";
-                string isPopular = "No";
-                
-                @if (menuItem.IsAvailable) { isAvailable = "Yes"; }
-                @if (menuItem.IsPopular) { isPopular = "Yes"; }
-       
+<div class="admin-page">
+    @if (Model != null)
+    {
+         <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>@menuItem.Name</td>
-                    <td>$@menuItem.Price</td>
-                    <td>@isAvailable</td>
-                    <td>@isPopular</td>
-                    <td>
-                        <form method="get" asp-controller="Menu" asp-action="EditMenu" style="display:inline;">
-                            <input type="hidden" name="menuItemId" value="@menuItem.MenuItemId" />
-                            <button type="submit" class="btn btn-warning">Edit</button>
-                        </form>
-                        <form method="post" asp-controller="Menu" asp-action="DeleteMenu" style="display:inline;" class="form-check">
-                            <input type="hidden" name="menuItemId" value="@menuItem.MenuItemId" />
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this menu item?');">Delete</button>
-                        </form>
-                    </td>
+                    <th scope="col">Dish</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Available</th>
+                    <th scope="col">Popular</th>
+                    <th scope="col">Action</th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var menuItem in Model)
+                {
+                    string isAvailable = "No";
+                    string isPopular = "No";
+                
+                    @if (menuItem.IsAvailable) { isAvailable = "Yes"; }
+                    @if (menuItem.IsPopular) { isPopular = "Yes"; }
+       
+                    <tr>
+                        <td>@menuItem.Name</td>
+                        <td>$@menuItem.Price</td>
+                        <td>@isAvailable</td>
+                        <td>@isPopular</td>
+                        <td>
+                            <form method="get" asp-controller="Menu" asp-action="DetailsMenu" style="display:inline;">
+                                <input type="hidden" name="menuItemId" value="@menuItem.MenuItemId" />
+                                <button type="submit" class="btn btn-primary">Details</button>
+                            </form>
+                            <form method="get" asp-controller="Menu" asp-action="EditMenu" style="display:inline;">
+                                <input type="hidden" name="menuItemId" value="@menuItem.MenuItemId" />
+                                <button type="submit" class="btn btn-warning">Edit</button>
+                            </form>
+                            <form method="post" asp-controller="Menu" asp-action="DeleteMenu" style="display:inline;">
+                                <input type="hidden" name="menuItemId" value="@menuItem.MenuItemId" />
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this menu item?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
 
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>There are no dishes on the menu.</p>
-}
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There are no dishes on the menu.</p>
+    }
 
-<a asp-controller="Menu" asp-action="CreateMenu" class="btn btn-primary">Add new menu item</a>
-<a asp-controller="Home" asp-action="Admin" class="btn btn-primary">Return to admin portal</a>
+    <a asp-controller="Menu" asp-action="CreateMenu" class="btn btn-primary">Add new menu item</a>
+    <a asp-controller="Home" asp-action="Admin" class="btn btn-primary">Return to admin portal</a>
+</div>

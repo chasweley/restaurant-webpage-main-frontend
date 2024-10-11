@@ -27,6 +27,19 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
             return View(menuItemList);
         }
 
+        [HttpGet("/adminportal/menu/details")]
+        [Authorize]
+        public async Task<IActionResult> DetailsMenu(int menuItemId)
+        {
+            var token = HttpContext.Request.Cookies["jwtToken"];
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _client.GetAsync($"{_baseUri}/{menuItemId}");
+            var json = await response.Content.ReadAsStringAsync();
+            var menuItem = JsonConvert.DeserializeObject<MenuItem>(json);
+            return View(menuItem);
+        }
+
         [HttpGet("/adminportal/menu/add")]
         [Authorize]
         public IActionResult CreateMenu()

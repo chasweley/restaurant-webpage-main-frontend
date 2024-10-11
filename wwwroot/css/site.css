@@ -18,15 +18,17 @@ h1 {
     color: var(--main-color);
     text-align: center;
     padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 h2 {
     font-size: 1.2rem;
     text-align: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
-h1,
-h2,
 ul,
 p {
     padding-left: 7rem;
@@ -83,7 +85,7 @@ ul {
 /*Grid for placement of navigation*/
 .container header.grid-header {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
     height: min-content;
     background-color: var(--background-color);
 }
@@ -92,7 +94,7 @@ ul {
 .container main.grid-main {
     grid-row-start: 2;
     grid-column-start: 2;
-    grid-column-end: 2;
+    grid-column-end: 3;
     background-color: var(--background-color);
 }
 
@@ -149,6 +151,25 @@ footer a:hover {
     margin-top: 2em;
 }
 
+.page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-content p {
+    padding: 0;
+}
+
+.page-content-form {
+    width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*Make image on home page smaller with smaller screen*/
 @media screen {
     #main-flex-img {
@@ -156,12 +177,40 @@ footer a:hover {
     }
 }
 
-/*Class for the general look when displaying a page and it's content*/
-.page-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
+@media screen and (max-width: 1250px) {
+    .container main.grid-main {
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+
+    .admin-page {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 694px) {
+    ul,
+    p {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    .page-content p {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    .page-content-btn {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .page-content-form {
+        width: 90dvw;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .main-page-card {

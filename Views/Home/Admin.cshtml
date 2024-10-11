@@ -4,7 +4,7 @@
 
 <h1 class="main-font">@ViewData["Title"]</h1>
 
-<div class="row btn-margin">
+<div class="row btn-margin admin-page">
     <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
@@ -23,8 +23,10 @@
             </div>
         </div>
     </div>
+
+    <form asp-controller="Account" asp-action="Logout" method="post">
+        <button type="submit" class="btn btn-danger btn-margin">Logout</button>
+    </form>
 </div>
 
-<form asp-controller="Account" asp-action="Logout" method="post">
-    <button type="submit" class="btn btn-danger btn-margin">Logout</button>
-</form>
+
