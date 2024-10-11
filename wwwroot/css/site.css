@@ -134,6 +134,7 @@ footer a {
     padding-top: 2.5rem;
     padding-right: 2.5rem;
 }
+
 footer a:hover {
     color: #FFFFFF;
     text-decoration: underline #FFFFFF;
@@ -213,21 +214,11 @@ footer a:hover {
     }
 }
 
-.main-page-card {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 2rem;
-    width: 48%;
-    border-radius: 15px;
-    align-items: center;
-    box-shadow: 5px 5px 8px 8px lightgray;
-}
-
 /*Placement for loading icon*/
-.loading-icon {
+/*.loading-icon {
     margin-top: 50vh;
     margin-left: 48vw;
-}
+}*/
 
 .menu-list {
     list-style: none;
@@ -239,6 +230,7 @@ footer a:hover {
     justify-content: space-between;
     width: 14em;
 }
+
 .link-container {
     display: flex;
     flex-direction: row;
