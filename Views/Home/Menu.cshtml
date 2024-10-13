@@ -8,27 +8,27 @@
 
 @if (Model != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Dish</th>
-                <th scope="col">Price</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h2>Entrees</h2>
+    @foreach (var menuItem in Model)
+    {   
+        if(menuItem.IsAvailable && menuItem.Category == "Entree")
+        {
+            <h3>@menuItem.Name</h3>
+            <p>@menuItem.Description</p>
+            <p>$@menuItem.Price</p>
+        }
+    }
 
-            @foreach (var menuItem in Model)
-            {   
-                if(menuItem.IsAvailable)
-                {
-                    <tr>
-                        <td>@menuItem.Name</td>
-                        <td>$@menuItem.Price</td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+    <h2>Side dishes</h2>
+    @foreach (var menuItem in Model)
+    {
+        if (menuItem.IsAvailable && menuItem.Category == "Side dish")
+        {
+            <h3>@menuItem.Name</h3>
+            <p>@menuItem.Description</p>
+            <p>$@menuItem.Price</p>
+        }
+    }
 }
 else
 {

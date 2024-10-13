@@ -7,8 +7,9 @@
 
 <div class="page-content">
     <p>Name of dish: @Model.Name</p>
+    <p>Description: @Model.Description</p>
     <p>Price: @Model.Price</p>
-    @* <p>Description: @Model.Description</p> *@
+    <p>Category: @Model.Category</p>
     @if (Model.IsAvailable)
     {
         <p>Available: <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" checked disabled></p>

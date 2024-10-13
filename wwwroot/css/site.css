@@ -29,14 +29,25 @@ h2 {
     padding-right: 2rem;
 }
 
+h3 {
+    font-size: 1.1rem;
+    color: var(--main-color);
+}
+
 ul,
-p {
+p,
+h3 {
     padding-left: 7rem;
     padding-right: 7rem;
 }
  
 ul {
     list-style-type: none;
+}
+
+table td#alert {
+    background-color: red;
+    color: white;
 }
 
 .main-font {
@@ -192,7 +203,8 @@ footer a:hover {
 
 @media screen and (max-width: 694px) {
     ul,
-    p {
+    p,
+    h3 {
         padding-left: 4rem;
         padding-right: 4rem;
     }

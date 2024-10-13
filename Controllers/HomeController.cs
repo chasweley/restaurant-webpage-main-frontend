@@ -18,9 +18,13 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
         }
 
         [HttpGet("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var response = await _client.GetAsync($"{_baseUri}/MenuItem/PopularEntrees");
+            var json = await response.Content.ReadAsStringAsync();
+            var popularMenuItemList = JsonConvert.DeserializeObject<List<PopularMenuItem>>(json);
+
+            return View(popularMenuItemList);
         }
 
         [HttpGet("/about")]

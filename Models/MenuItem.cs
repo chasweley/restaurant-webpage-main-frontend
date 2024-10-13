@@ -10,8 +10,11 @@ namespace Labb_2_Avancerad_fullstackutveckling.Models
         [Required(ErrorMessage = "Field cannot be empty.")]
         [StringLength(50, ErrorMessage = "The maximum number of characters allowed is 50.")]
         public string Name { get; set; }
+        [StringLength(200, ErrorMessage = "The maximum number of characters allowed is 200.")]
+        public string Description { get; set; }
         public decimal Price { get; set; }
-        //public string Description { get; set; }
+        [Required(ErrorMessage = "Field cannot be empty.")]
+        public string Category { get; set; }
 
         [Required(ErrorMessage = "Field cannot be empty.")]
         public bool IsAvailable { get; set; }

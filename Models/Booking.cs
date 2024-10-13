@@ -18,7 +18,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Models
 
         [Required(ErrorMessage = "Field cannot be empty.")]
         public string Name { get; set; }
-        public int TableId { get; set; }
-        public int SeatingCapacity { get; set; }
+        public int? TableId { get; set; }
+        public int? SeatingCapacity { get; set; }
     }
 }
