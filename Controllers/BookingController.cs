@@ -98,7 +98,7 @@ namespace Labb_2_Avancerad_fullstackutveckling.Controllers
         }
 
         [Authorize]
-        [HttpPost("/adminportal/reservation/delete")]
+        [HttpPost]
         public async Task<IActionResult> DeleteBooking(int bookingId)
         {
             var token = HttpContext.Request.Cookies["jwtToken"];
